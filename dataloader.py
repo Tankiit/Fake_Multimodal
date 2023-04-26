@@ -29,11 +29,14 @@ class pickle_dataloader(Dataset):
 
 
 
-data=pickle_dataloader('/media/steven/WDD/research/data/Fake_Media/weibo_train.pkl')
+data=pickle_dataloader('/Users/tanmoy/research/Fake_News/data/weibo_train.pkl')
 from torch.utils.data import DataLoader
 
 train_dataloader = DataLoader(data, batch_size=64, shuffle=True)
 
-#for (i,j,k) in train_dataloader:
-#    print (k)
+from sentence_transformers import SentenceTransformer 
+model = SentenceTransformer('paraphrase-MiniLM-L6-v2') 
+
+for (i,j,k) in train_dataloader:
+    print (model.encode(j))
 
